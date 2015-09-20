@@ -3455,7 +3455,7 @@ See: https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-inline-symbol"
   "Check whether all nREPL ops are present and emit a warning when not."
   (let ((missing-ops (-remove #'cljr--op-supported? cljr--nrepl-ops)))
     (when missing-ops
-      (cider-repl-emit-interactive-stderr
+      (cider-repl-emit-interactive-err-output
        (format "WARNING: The following nREPL ops are not supported:
 %s\nPlease, install (or update) refactor-nrepl and restart REPL.
 You can mute this warning by changing cljr-suppress-middleware-warnings."
@@ -3480,7 +3480,7 @@ if REMOVE-PACKAGE_VERSION is t get rid of the (package: 20150828.1048) suffix."
                                     "n/a")))
     (unless (s-equals? (s-downcase refactor-nrepl-version)
                        (s-downcase (cljr--version :remove-package-version)))
-      (cider-repl-emit-interactive-stderr
+      (cider-repl-emit-interactive-err-output
        (format "WARNING: clj-refactor and refactor-nrepl are out of sync.
 Their versions are %s and %s, respectively.
 You can mute this warning by changing cljr-suppress-middleware-warnings."
